@@ -4,9 +4,9 @@ using UnityEngine.TextCore.Text;
 public class Player : Character, IShootable
 {
     [Header("Weapon Settings")]
-    [SerializeField] private GameObject daggerPrefab; // ลาก Prefab มีด/กล้วย มาใส่
-    [SerializeField] private Transform throwPoint;    // ลากจุดปล่อยของ (Empty Object) มาใส่
-    [SerializeField] private float fireRate = 0.5f;   // ยิงรัวแค่ไหน
+    [SerializeField] private GameObject daggerPrefab;
+    [SerializeField] private Transform throwPoint;
+    [SerializeField] private float fireRate = 0.5f;
     private float nextFireTime;
 
     // Interface Implementation
@@ -15,26 +15,22 @@ public class Player : Character, IShootable
 
     void Start()
     {
-        // เริ่มต้นเลือด 100
         base.Initialize(100);
     }
 
     void Update()
     {
-        // กดคลิกซ้าย หรือ Ctrl เพื่อยิง
         if (Input.GetButtonDown("Fire1") && Time.time >= nextFireTime)
         {
             Shoot();
             nextFireTime = Time.time + fireRate;
         }
 
-        // ระบบ Corruption: เลือดลดตลอดเวลา
         ApplyCorruption();
     }
 
     void ApplyCorruption()
     {
-        // ลดเลือดทีละนิดตามเวลา
         TakeDamage(1f * Time.deltaTime);
     }
 
