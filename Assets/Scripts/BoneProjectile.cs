@@ -1,16 +1,35 @@
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.TextCore.Text;
 
-public class BoneProjectile : MonoBehaviour
+// กระดูกของ Skeleton
+public class BoneProjectile : Weapon
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public override void Move()
     {
-        
+        // ไม่ต้องเขียน เพราะใช้ AddForce ใน Skeleton แล้ว
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void OnHit(Character target)
     {
-        
+        // ยิงโดนผู้เล่นเท่านั้น
+        if (target is Player)
+        {
+            target.TakeDamage(damage);
+            Destroy(gameObject);
+        }
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        Character c = other.GetComponent<Character>();
+        if (c != null && c != Owner)
+        {
+            OnHit(c);
+        }
+        // ถ้าชนพื้น (Ground) ให้หายไปเลย
+        else if (other.gameObject.layer == LayerMask.NameToLayer("Ground"))
+        {
+            Destroy(gameObject);
+        }
     }
 }
