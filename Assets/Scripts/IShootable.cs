@@ -6,4 +6,3 @@ public interface IShootable
     Transform ShootPoint { get; set; }
     void Shoot();
 }
-S
