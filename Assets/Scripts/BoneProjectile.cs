@@ -6,7 +6,7 @@ public class BoneProjectile : Weapon
 {
     public override void Move()
     {
-        // ไม่ต้องเขียน เพราะใช้ AddForce ใน Skeleton แล้ว
+        
     }
 
     public override void OnHit(Character target)
@@ -26,7 +26,6 @@ public class BoneProjectile : Weapon
         {
             OnHit(c);
         }
-        // ถ้าชนพื้น (Ground) ให้หายไปเลย
         else if (other.gameObject.layer == LayerMask.NameToLayer("Ground"))
         {
             Destroy(gameObject);

@@ -1,7 +1,5 @@
 ﻿using UnityEngine;
 
-// สคริปต์นี้ใส่ไว้ที่ตัวผู้เล่น (Player) เหมือนกัน
-// ทำหน้าที่: เดิน, กระโดด, พลิกตัว
 public class PlayerController : MonoBehaviour
 {
     [Header("Movement Settings")]
